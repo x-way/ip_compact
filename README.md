@@ -4,6 +4,12 @@
 
 "Compact" a list of IP prefixes (removing duplicates, merging adjacent ranges).
 
+## Installation
+
+```
+# go get github.com/x-way/ip_compact
+```
+
 ## Usage
 
 ```
