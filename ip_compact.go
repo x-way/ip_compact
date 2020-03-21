@@ -55,6 +55,10 @@ func main() {
 	var prefixesv6 []ipaddr.Prefix
 	var prefixesv4 []ipaddr.Prefix
 	if len(os.Args) > 1 {
+		if os.Args[1] == "-h" || os.Args[1] == "--help" {
+			fmt.Println("Usage: cat iplist.txt | ip_compact")
+			return
+		}
 		for _, fn := range os.Args[1:] {
 			pfx6, pfx4 := readFile(fn)
 			prefixesv6 = append(prefixesv6, pfx6...)

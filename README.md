@@ -13,7 +13,7 @@
 ## Usage
 
 ```
-# cat test.txt
+# cat iplist.txt
 192.168.4.0/24
 192.168.5.0/24
 2001:db8::123
@@ -21,7 +21,7 @@
 192.168.5.5
 2001:db8::123/128
 
-# cat test.txt | ip_compact
+# cat iplist.txt | ip_compact
 2001:db8::123/128
 192.168.4.0/22
 ```
