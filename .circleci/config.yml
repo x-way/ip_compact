@@ -41,6 +41,12 @@ jobs:
           command: |
                     go get honnef.co/go/tools/cmd/staticcheck
                     staticcheck -checks all ./...
+      - run:
+          name: Check gofumports formatting
+          command: |
+                    go get mvdan.cc/gofumpt/gofumports
+                    gofumports -d .
+                    [ -z "$(gofumpts -l .)" ]
 
   build-1.12:
     <<: *build-template
