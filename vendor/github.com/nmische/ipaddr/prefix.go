@@ -24,8 +24,10 @@ var (
 )
 
 const (
-	IPv4PrefixLen = 8 * net.IPv4len // maximum number of prefix length in bits
-	IPv6PrefixLen = 8 * net.IPv6len // maximum number of prefix length in bits
+	// IPv4PrefixLen is the maximum number of IPv4 prefix length in bits
+	IPv4PrefixLen = 8 * net.IPv4len
+	// IPv6PrefixLen is the maximum number of IPv6 prefix length in bits
+	IPv6PrefixLen = 8 * net.IPv6len
 )
 
 // A Prefix represents an IP address prefix.
