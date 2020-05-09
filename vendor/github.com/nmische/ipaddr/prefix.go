@@ -140,7 +140,7 @@ func (p *Prefix) Exclude(q *Prefix) []Prefix {
 	return ps
 }
 
-func subnetsIPv4(p *Prefix, reuse bool) (l *Prefix, r *Prefix) {
+func subnetsIPv4(p *Prefix, reuse bool) (l, r *Prefix) {
 	i := ipToIPv4Int(p.IP) | ipv4Int(1<<uint(IPv4PrefixLen-p.Len()-1))
 	r = i.prefix(p.Len()+1, IPv4PrefixLen)
 	if reuse {
@@ -152,7 +152,7 @@ func subnetsIPv4(p *Prefix, reuse bool) (l *Prefix, r *Prefix) {
 	return
 }
 
-func subnetsIPv6(p *Prefix, reuse bool) (l *Prefix, r *Prefix) {
+func subnetsIPv6(p *Prefix, reuse bool) (l, r *Prefix) {
 	i := ipToIPv6Int(p.IP)
 	id := ipv6Int{0, 1}
 	id.lsh(IPv6PrefixLen - p.Len() - 1)
