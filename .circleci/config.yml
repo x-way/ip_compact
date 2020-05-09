@@ -46,7 +46,7 @@ jobs:
           command: |
                     go get mvdan.cc/gofumpt/gofumports
                     gofumports -d .
-                    [ -z "$(gofumpts -l .)" ]
+                    [ -z "$(gofumports -l .)" ]
 
   build-1.12:
     <<: *build-template
