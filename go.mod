@@ -1,6 +1,6 @@
 module github.com/x-way/ip_compact
 
-go 1.12
+go 1.14
 
 // aggregate fix from nmische
 replace github.com/mikioh/ipaddr => ./vendor/github.com/nmische/ipaddr

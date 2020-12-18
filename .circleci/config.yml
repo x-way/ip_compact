@@ -4,8 +4,6 @@ workflows:
   build:
     jobs:
       - build-latest
-      - build-1.12
-      - build-1.13
       - build-1.14
       - build-1.15
   scheduled:
@@ -18,8 +16,6 @@ workflows:
                 - master
     jobs:
       - build-latest
-      - build-1.12
-      - build-1.13
       - build-1.14
       - build-1.15
 
@@ -49,16 +45,6 @@ jobs:
                     go get mvdan.cc/gofumpt/gofumports
                     gofumports -d .
                     [ -z "$(gofumports -l .)" ]
-
-  build-1.12:
-    <<: *build-template
-    docker:
-      - image: circleci/golang:1.12
-
-  build-1.13:
-    <<: *build-template
-    docker:
-      - image: circleci/golang:1.13
 
   build-1.14:
     <<: *build-template
