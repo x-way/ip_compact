@@ -4,16 +4,14 @@ import (
 	"bufio"
 	"fmt"
 	"log"
-	"net"
 	"os"
 	"strings"
 
-	"github.com/mikioh/ipaddr"
+	"inet.af/netaddr"
 )
 
-func readFile(name string) ([]ipaddr.Prefix, []ipaddr.Prefix) {
-	var prefixesv6 []ipaddr.Prefix
-	var prefixesv4 []ipaddr.Prefix
+func readFile(name string) []netaddr.IPPrefix {
+	var prefixes []netaddr.IPPrefix
 	var f *os.File
 	if name == "-" {
 		f = os.Stdin
@@ -35,43 +33,37 @@ func readFile(name string) ([]ipaddr.Prefix, []ipaddr.Prefix) {
 				line = line + "/32"
 			}
 		}
-		_, ipNet, err := net.ParseCIDR(line)
+		prefix, err := netaddr.ParseIPPrefix(line)
 		if err != nil {
 			log.Fatal(err)
 		}
-		if strings.Contains(line, ":") {
-			prefixesv6 = append(prefixesv6, *(ipaddr.NewPrefix(ipNet)))
-		} else {
-			prefixesv4 = append(prefixesv4, *(ipaddr.NewPrefix(ipNet)))
-		}
+		prefixes = append(prefixes, prefix)
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	return prefixesv6, prefixesv4
+	return prefixes
 }
 
 func main() {
-	var prefixesv6 []ipaddr.Prefix
-	var prefixesv4 []ipaddr.Prefix
+	var prefixes []netaddr.IPPrefix
 	if len(os.Args) > 1 {
 		if os.Args[1] == "-h" || os.Args[1] == "--help" {
 			fmt.Println("Usage: cat iplist.txt | ip_compact")
 			return
 		}
 		for _, fn := range os.Args[1:] {
-			pfx6, pfx4 := readFile(fn)
-			prefixesv6 = append(prefixesv6, pfx6...)
-			prefixesv4 = append(prefixesv4, pfx4...)
+			prefixes = append(prefixes, readFile(fn)...)
 		}
 	} else {
-		prefixesv6, prefixesv4 = readFile("-")
+		prefixes = readFile("-")
 	}
 
-	for _, prefix := range ipaddr.Aggregate(prefixesv6) {
-		fmt.Println(prefix)
+	var builder netaddr.IPSetBuilder
+	for _, prefix := range prefixes {
+		builder.AddPrefix(prefix)
 	}
-	for _, prefix := range ipaddr.Aggregate(prefixesv4) {
-		fmt.Println(prefix)
+	for _, prefix := range builder.IPSet().Prefixes() {
+		fmt.Println(prefix.String())
 	}
 }
