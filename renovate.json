@@ -13,5 +13,20 @@
   ],
   "postUpdateOptions": [
     "gomodTidy"
+  ],
+  "packageRules": [
+    {
+      "packageNames": [
+        "inet.af/netaddr",
+        "golang.org/x/sys"
+      ],
+      "updateTypes": [
+        "digest",
+        "patch"
+      ],
+      "reviewers": [],
+      "assignees": [],
+      "automerge": true
+    }
   ]
 }
