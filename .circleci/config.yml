@@ -45,6 +45,37 @@ jobs:
                     go get mvdan.cc/gofumpt
                     gofumpt -d .
                     [ -z "$(gofumpt -l .)" ]
+      - run: go build
+      - run:
+          name: Test matching (single file)
+          command: |
+                    for x in a b c d ; do
+                      ./ip_compact test/$x.txt > got.txt
+                      diff -Naur test/${x}_compact.txt got.txt
+                      rm got.txt
+                    done
+      - run:
+          name: Test matching (two files)
+          command: |
+                    for x in a b c d ; do
+                      for y in a b c d ; do
+                        ./ip_compact test/$x.txt test/$y.txt > got.txt
+                        diff -Naur test/${x}_${y}_compact.txt got.txt
+                        rm got.txt
+                      done
+                    done
+      - run:
+          name: Test matching (three files)
+          command: |
+                    for x in a b c d ; do
+                      for y in a b c d ; do
+                        for z in a b c d ; do
+                          ./ip_compact test/$x.txt test/$y.txt test/$z.txt > got.txt
+                          diff -Naur test/${x}_${y}_${z}_compact.txt got.txt
+                          rm got.txt
+                        done
+                      done
+                    done
 
   build-1.16:
     <<: *build-template
