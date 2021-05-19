@@ -26,5 +26,5 @@ golang.org/x/tools v0.1.0/go.mod h1:xkSsbof2nBLbhDlRMhhhyNLN/zl3eTqcnHD5viDpcZ0=
 golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
-inet.af/netaddr v0.0.0-20210515042239-4573b60a69aa h1:8cVe+GAnfspAwQfUsLwGfiUb3vp+wUKOM0Bs0i9xC7M=
-inet.af/netaddr v0.0.0-20210515042239-4573b60a69aa/go.mod h1:z0nx+Dh+7N7CC8V5ayHtHGpZpxLQZZxkIaaz6HN65Ls=
+inet.af/netaddr v0.0.0-20210519155813-493aec6a484e h1:86JJI+/QlvkGsLu3rFBnCb0GkBUCWFdIaTub1womoLo=
+inet.af/netaddr v0.0.0-20210519155813-493aec6a484e/go.mod h1:z0nx+Dh+7N7CC8V5ayHtHGpZpxLQZZxkIaaz6HN65Ls=
