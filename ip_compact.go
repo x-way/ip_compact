@@ -45,6 +45,14 @@ func readFile(name string) []netaddr.IPPrefix {
 	return prefixes
 }
 
+func mustIPSet(b netaddr.IPSetBuilder) *netaddr.IPSet {
+	s, err := b.IPSet()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return s
+}
+
 func main() {
 	var prefixes []netaddr.IPPrefix
 	if len(os.Args) > 1 {
@@ -63,7 +71,7 @@ func main() {
 	for _, prefix := range prefixes {
 		builder.AddPrefix(prefix)
 	}
-	for _, prefix := range builder.IPSet().Prefixes() {
+	for _, prefix := range mustIPSet(builder).Prefixes() {
 		fmt.Println(prefix.String())
 	}
 }
