@@ -7,7 +7,7 @@
 ## Installation
 
 ```
-# go get github.com/x-way/ip_compact
+# go install github.com/x-way/ip_compact@latest
 ```
 
 ## Usage
