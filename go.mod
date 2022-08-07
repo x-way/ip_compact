@@ -1,6 +1,6 @@
 module github.com/x-way/ip_compact
 
-go 1.17
+go 1.18
 
 require inet.af/netaddr v0.0.0-20220617031823-097006376321
 
