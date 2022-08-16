@@ -17,7 +17,7 @@
   "packageRules": [
     {
       "packageNames": [
-        "inet.af/netaddr",
+        "go4.org/netipx",
         "golang.org/x/sys"
       ],
       "updateTypes": [
