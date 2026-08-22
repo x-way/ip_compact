@@ -22,7 +22,7 @@ func readFile(name string) []netip.Prefix {
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer f.Close()
+		defer func() { _ = f.Close() }()
 	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
