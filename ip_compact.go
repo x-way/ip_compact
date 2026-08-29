@@ -18,7 +18,7 @@ func readFile(name string) []netip.Prefix {
 		f = os.Stdin
 	} else {
 		var err error
-		f, err = os.Open(name)
+		f, err = os.Open(name) // #nosec G304 G703 -- name is a positional CLI argument (file to read), not attacker-controlled
 		if err != nil {
 			log.Fatal(err)
 		}
